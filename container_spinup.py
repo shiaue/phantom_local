@@ -7,15 +7,14 @@ Slack messages you the container id
 import phantom.rules as phantom
 import sys
 import json
-import requests
 import ipaddress
 
 SLACK_USERS = ["@eshiau"]
 
 def on_start(container):
     response_types = [
-        {'prompt': 'Confirmation', 'options': {'type': 'list', 'choices': ["yes", "no"]}},
-        {'prompt': 'Slack Username e.g. @user', 'options': {'type': 'message'}}]
+        {'prompt': 'Slack Username e.g. @user', 'options': {'type': 'message'}},
+        {'prompt': 'Confirmation', 'options': {'type': 'list', 'choices': ["yes", "no"]}}]
     message = "Generating test container..."
     phantom.prompt2(message=message, container=container, user="Administrator", response_types=response_types, callback=create_container, respond_in_mins=100, trace=True)
     return
