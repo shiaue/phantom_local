@@ -21,7 +21,7 @@ def on_start(container):
     return
 
 def create_container(action, success, container, results, handle):
-    logger("results:{}action:{}".format(results, action), clean=True, comment=True)
+    logger("results:{}action:{}", clean=True, comment=True, args=[results, action])
 
     for action_run in results:
         results_data = results[0]["action_results"][0]["data"]
