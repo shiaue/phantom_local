@@ -17,11 +17,11 @@ def on_start(container):
         {'prompt': 'Confirmation', 'options': {'type': 'list', 'choices': ["yes", "no"]}},
         {'prompt': 'Slack Username e.g. @user', 'options': {'type': 'message'}}]
     message = "Generating test container..."
-    phantom.prompt2(message=message, container=container, user="Administrator", response_types=response_types, callback=create_container, respond_in_minutes=100)
+    phantom.prompt2(message=message, container=container, user="Administrator", response_types=response_types, callback=create_container, respond_in_mins=100, trace=True)
     return
 
 def create_container(action, success, container, results, handle):
-    logger("results:{}".format(results), clean=True, comment=True)
+    logger("results:{}action:{}".format(results, action), clean=True, comment=True)
 
     for action_run in results:
         results_data = results[0]["action_results"][0]["data"]
