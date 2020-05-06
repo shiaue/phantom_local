@@ -20,12 +20,13 @@ def on_start(container):
     return
 
 def create_container(action, success, container, results, handle):
-    logger("results:{}action:{}", clean=True, comment=True, args=[results, action])
+    logger("success{}results{}action{}", clean=True, comment=True, args=[success, results, action])
 
     for action_run in results:
         results_data = results[0]["action_results"][0]["data"]
-        logger("results_data:{}".format(results_data), clean=True, comment=True)
-        slack_user = results_data[0]["response"]
+        responses = results_data[0]["responses"]
+        logger("Responses\n{}".format(responses), comment=True)
+        slack_user = responses[0]
         logger("slack_user:{}".format(slack_user), clean=True, comment=True)
 
     sys.exit(1)
